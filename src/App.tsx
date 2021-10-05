@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import { FormDialog } from './FormDialog';
+import { TodoItem } from './TodoItem';
+import { ToolBar } from './ToolBar';
+import { SideBar } from './SideBar';
+import { QR } from './QR';
+import { AlertDialog } from './AlertDialog';
+import { ActionButton } from './ActionButton';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 type Filter = 'all' | 'checked' | 'unchecked' | 'removed';
 
@@ -14,6 +22,27 @@ export const App = () => {
   const [text, setText] = useState('');
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<Filter>('all');
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+
+  const handleOnSort = (filter: Filter) => {
+    setFilter(filter);
+  };
+
+  const onQROpen = () => setQrOpen(true);
+  const onQRClose = () => setQrOpen(false);
+
+  const toggleDialog = () => {
+    setDialogOpen(!dialogOpen);
+    // フォームへの入力をクリア
+    setText('');
+  };
+
+  const toggleAlert = () => setAlertOpen(!alertOpen);
 
   const handleOnSubmit = () => {
     if(!text) return;
@@ -27,9 +56,12 @@ export const App = () => {
 
     setTodos([newTodo, ...todos]);
     setText('');
+
+    // FormDialog コンポーネントを閉じる
+    setDialogOpen(false);
   }
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
   
@@ -92,85 +124,47 @@ export const App = () => {
 
   return (
     <div>
-      <select
-        defaultValue="all"
-        onChange={(e) => setFilter(e.target.value as Filter)}
-      >
-          <option value="all">すべてのタスク</option>
-          <option value="checked">完了したタスク</option>
-          <option value="unchecked">現在のタスク</option>
-          <option value="removed">削除済みのタスク</option>
-      </select>
-      {filter === 'removed' ? (
-        <button onClick={() => handleOnEmpty()}>
-          ゴミ箱を空にする
-        </button>
-      ) : (
-        <form
-          onSubmit={(e) => handleOnSubmit()}
-        >
-          <input 
-            type="text"
-            value={text}
-            disabled={filter === 'checked'}
-            onChange={(e) => handleOnChange(e)}
-          />
-          <input
-            type="submit"
-            value="追加"
-            disabled={filter === 'checked'}
-            onSubmit={(e) => handleOnSubmit()}
-          />
-        </form>
-      )}
-      <ul>
-        {
-          filteredTodos.map((todo) => {
-            return (
-              <li key={todo.id}>
-                <input
-                  type="checkbox"
-                  disabled={todo.removed}
-                  checked={todo.checked}
-                  onChange={(e) => handleOnCheck(todo.id, todo.checked)}
-                />
-                <input
-                  type="text"
-                  disabled={todo.checked || todo.removed}
-                  value={todo.value}
-                  onChange={(e) => handleOnEdit(todo.id, e.target.value)}
-                />
-                <button onClick={() => handleOnRemove(todo.id, todo.removed)}>
-                  {todo.removed ? '復元' : '削除'}
-                </button>
-              </li>
-            );
-          })
-        }
-      </ul>
+      <GlobalStyles styles={{ body: { margin: 0, padding: 0 } }} />
+      <ToolBar filter={filter} toggleDrawer={toggleDrawer}/>
+      <SideBar
+        drawerOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        onSort={handleOnSort}
+        onOpen={onQROpen}
+      />
+      <FormDialog
+        text={text}
+        dialogOpen={dialogOpen}
+        toggleDialog={toggleDialog}
+        onChange={handleOnChange}
+        onSubmit={handleOnSubmit}
+      />
+      <AlertDialog
+        alertOpen={alertOpen}
+        onEmpty={handleOnEmpty}
+        toggleAlert={toggleAlert}
+      />
+      <QR open={qrOpen} onClose={onQRClose} />
+      {filteredTodos.map((todo) => {
+          return (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              filter={filter}
+              onCheck={handleOnCheck}
+              onEdit={handleOnEdit}
+              onRemove={handleOnRemove}
+            />
+          );
+        })}
+        <ActionButton
+          todos={todos}
+          filter={filter}
+          alertOpen={alertOpen}
+          dialogOpen={dialogOpen}
+          toggleAlert={toggleAlert}
+          toggleDialog={toggleDialog}
+        />
     </div>
   );
 };
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React!
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

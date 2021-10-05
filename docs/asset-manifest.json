@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "/pwa-sample/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/pwa-sample/static/js/main.fad833a0.chunk.js",
-    "main.js.map": "/pwa-sample/static/js/main.fad833a0.chunk.js.map",
-    "runtime-main.js": "/pwa-sample/static/js/runtime-main.361bf944.js",
-    "runtime-main.js.map": "/pwa-sample/static/js/runtime-main.361bf944.js.map",
-    "static/js/2.c525489e.chunk.js": "/pwa-sample/static/js/2.c525489e.chunk.js",
-    "static/js/2.c525489e.chunk.js.map": "/pwa-sample/static/js/2.c525489e.chunk.js.map",
-    "static/js/3.36a66a27.chunk.js": "/pwa-sample/static/js/3.36a66a27.chunk.js",
-    "static/js/3.36a66a27.chunk.js.map": "/pwa-sample/static/js/3.36a66a27.chunk.js.map",
+    "main.css": "/pwa-sample/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/pwa-sample/static/js/main.ca12bb4f.chunk.js",
+    "main.js.map": "/pwa-sample/static/js/main.ca12bb4f.chunk.js.map",
+    "runtime-main.js": "/pwa-sample/static/js/runtime-main.0660b94c.js",
+    "runtime-main.js.map": "/pwa-sample/static/js/runtime-main.0660b94c.js.map",
+    "static/css/2.9fd37649.chunk.css": "/pwa-sample/static/css/2.9fd37649.chunk.css",
+    "static/js/2.f3675cdb.chunk.js": "/pwa-sample/static/js/2.f3675cdb.chunk.js",
+    "static/js/2.f3675cdb.chunk.js.map": "/pwa-sample/static/js/2.f3675cdb.chunk.js.map",
     "index.html": "/pwa-sample/index.html",
     "service-worker.js": "/pwa-sample/service-worker.js",
     "service-worker.js.map": "/pwa-sample/service-worker.js.map",
-    "static/css/main.8c8b27cf.chunk.css.map": "/pwa-sample/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.c525489e.chunk.js.LICENSE.txt": "/pwa-sample/static/js/2.c525489e.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/pwa-sample/static/media/logo.103b5fa1.svg"
+    "static/css/2.9fd37649.chunk.css.map": "/pwa-sample/static/css/2.9fd37649.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/pwa-sample/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.f3675cdb.chunk.js.LICENSE.txt": "/pwa-sample/static/js/2.f3675cdb.chunk.js.LICENSE.txt",
+    "static/media/300.css": "/pwa-sample/static/media/roboto-vietnamese-300-normal.af9afdc1.woff2",
+    "static/media/400.css": "/pwa-sample/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2",
+    "static/media/500.css": "/pwa-sample/static/media/roboto-vietnamese-500-normal.b8e494da.woff2",
+    "static/media/700.css": "/pwa-sample/static/media/roboto-vietnamese-700-normal.3096f18a.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.361bf944.js",
-    "static/js/2.c525489e.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.fad833a0.chunk.js"
+    "static/js/runtime-main.0660b94c.js",
+    "static/css/2.9fd37649.chunk.css",
+    "static/js/2.f3675cdb.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.ca12bb4f.chunk.js"
   ]
 }
