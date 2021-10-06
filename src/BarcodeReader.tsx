@@ -1,11 +1,12 @@
 import { BrowserMultiFormatOneDReader, IScannerControls } from "@zxing/browser"
 // import { Result } from '@zxing/library'
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 export const QrCodeReader  = () => {
     const codeReader = useRef(new BrowserMultiFormatOneDReader())
     const controlsRef = useRef<IScannerControls|null>()
     const videoRef = useRef<HTMLVideoElement>(null)
+    const [barcode, setBarcode] = useState<string>('読み取り中...'); 
 
   useEffect(() => {
     if (!videoRef.current) {
@@ -21,6 +22,7 @@ export const QrCodeReader  = () => {
         if (result) {
 //          props.onReadQRCode(result)
             console.log(result)
+            setBarcode(result.getText())
         }
         controlsRef.current = controls
       })
@@ -34,9 +36,14 @@ export const QrCodeReader  = () => {
     }
   }, [])
 
-  return <video
-    style={{ maxWidth: "100%", maxHeight: "100%",height:"100%" }}
-    ref={videoRef}
-  /> 
+  return (
+  <div>
+    <video
+      style={{ maxWidth: "100%", maxHeight: "100%",height:"100%" }}
+      ref={videoRef}
+    />
+    <p>{barcode}</p>
+  </div>
+  );
 
 }
