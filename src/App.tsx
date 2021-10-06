@@ -7,6 +7,7 @@ import { QR } from './QR';
 import { AlertDialog } from './AlertDialog';
 import { ActionButton } from './ActionButton';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { QrCodeReader } from './BarcodeReader';
 
 type Filter = 'all' | 'checked' | 'unchecked' | 'removed';
 
@@ -26,6 +27,8 @@ export const App = () => {
   const [qrOpen, setQrOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
+
+  const [qrCodes, setQrCodes] = useState([])
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
@@ -145,6 +148,7 @@ export const App = () => {
         toggleAlert={toggleAlert}
       />
       <QR open={qrOpen} onClose={onQRClose} />
+      <QrCodeReader />
       {filteredTodos.map((todo) => {
           return (
             <TodoItem
